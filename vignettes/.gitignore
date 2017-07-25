@@ -1,0 +1,12 @@
+knitr_cache
+knitr_figure
+solutions1.Rnw
+*-concordance.tex
+*.aux
+*.log
+*.out
+practical[1|2|3].pdf
+practical[1|2|3].tex
+*.synctex.gz
+*.bbl
+*.blg

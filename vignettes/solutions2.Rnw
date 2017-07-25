@@ -1,0 +1,253 @@
+%\VignetteIndexEntry{solutions2}
+%!Snw weave = knitr
+%\VignetteEngine{knitr::knitr}
+<<echo=FALSE>>=
+results='show';echo=TRUE
+@
+\documentclass[a4paper,justified,openany]{tufte-handout}
+
+<<setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+opts_knit$set(out.format = "latex")
+knit_theme$set(knit_theme$get("greyscale0"))
+
+options(replace.assign=FALSE,width=50)
+
+opts_chunk$set(fig.path='knitr_figure/graphics-',
+               cache.path='knitr_cache/graphics-',
+               fig.align='center',
+               dev='pdf', fig.width=5, fig.height=5,
+               fig.show='hold', cache=FALSE, par=TRUE)
+knit_hooks$set(crop=hook_pdfcrop)
+
+knit_hooks$set(par=function(before, options, envir){
+    if (before && options$fig.show!='none') {
+        par(mar=c(3,3,2,1),cex.lab=.95,cex.axis=.9,
+            mgp=c(2,.7,0),tcl=-.01, las=1)
+}}, crop=hook_pdfcrop)
+@
+
+%\geometry{showframe}% for debugging purposes -- displays the margins
+\usepackage{amsmath}
+
+% Set up the images/graphics package
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{graphics/}}
+
+\title{Advanced graphics: practical 2 \Sexpr{ifelse(echo, "solutions", "")}}
+\author[Dr Colin Gillespie]{Dr Colin S.
+  Gillespie}
+\date{}  % if the \date{} command is left out, the current date will be used
+
+% The following package makes prettier tables.  We're all about the bling!
+\usepackage{booktabs}
+
+% The units package provides nice, non-stacked fractions and better spacing
+% for units.
+\usepackage{units}
+
+% The fancyvrb package lets us customize the formatting of verbatim
+% environments.  We use a slightly smaller font.
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+\newcommand{\cc}{\texttt}
+\graphicspath{{../graphics/}}
+\setcounter{secnumdepth}{2}
+
+\begin{document}
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+  \noindent This practical aims to guide you through some of the key ideas in
+  \mbox{\cc{ggplot2}}. As with the first practical, feel free to experiment.
+  Some of the functions introduced in this practical haven't been explicitly
+  covered in the notes. Use the built-in R help or the \cc{ggplot2} help pages
+  at\linebreak[4] \mbox{\url{http://had.co.nz/ggplot2/}} as needed.
+\end{abstract}
+
+
+\section{Over plotting}\label{Over}
+
+Scatter plots are very useful. However, when we have a large data set, points
+will be plotted on top of each other obscuring the relationship. We call this
+problem over plotting. There are a few techniques we can use to help, although
+the best solution is often problem specific.
+
+To begin with we will create an example data frame:
+
+<<overplotting, cache=TRUE, tidy=FALSE, echo=1:4>>=
+## If your computer is slow when plotting reduce the value of n
+library("jrGgplot2")
+library("ggplot2")
+df = overplot_data(n=20000)
+h = ggplot(df) + geom_point(aes(x, y))
+@
+
+\begin{marginfigure}
+  \centering
+<<echo=FALSE>>=
+h
+@
+  \caption{A scatter plot that suffers from over plotting.}\label{F4}
+\end{marginfigure}
+
+\noindent We can create a simple scatter plot of this data using the following command
+
+<<echo=5>>=
+<<overplotting>>
+@
+
+\noindent This plot isn't particularly good. Try to improve it by using a
+combination of:
+
+\begin{itemize}
+\item changing the transparency level: \cc{alpha};\marginnote{\cc{alpha} takes a value between $0$ and $1$.}
+\item change the shape: \cc{shape=1} and \cc{shape=`.'}
+\item use some jittering - \cc{geom\_jitter}.
+\item adding a contour to the plot using \cc{stat\_density2d}.
+\item What does
+
+<<cache=TRUE, fig.keep='none', tidy=FALSE>>=
+h +  stat_density2d(aes(x,y, fill=..density..),
+                contour=FALSE, geom="tile")
+@
+
+do?
+\item What does \cc{stat\_bin2d()} and \cc{stat\_binhex()} do\sidenote{To use
+    \cc{stat\_binhex} you may need to install the \cc{hexbin} package.} - add it to the
+  plot to find out! Try varying the parameters \cc{bins} and \cc{binwidth}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Section 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Displaying distributions}
+
+The diamonds data set contains the prices and other attributes of almost 54,000
+diamonds. It is a data frame with $53,940$ rows and $10$ variables. First, load the
+diamonds data set:
+
+<<>>=
+data(diamonds, package="ggplot2")
+@
+
+\noindent and look at the help file:
+
+<<tidy=FALSE, eval=FALSE>>=
+?diamonds
+@
+
+
+\noindent We can construct a histogram of diamond depth using the following commands:
+
+<<fig.keep='none', message=FALSE>>=
+i1 = ggplot(data=diamonds) +
+  geom_histogram(aes(x=depth))
+@
+\begin{marginfigure}
+  \centering
+<<echo=FALSE, message=FALSE>>=
+i1
+@
+  \caption{Histogram of the diamond data set.}\label{F5}
+\end{marginfigure}
+
+\noindent to get figure \ref{F5}. Let's experiment a bit.
+\begin{enumerate}
+\item Change the \cc{binwidth} in the \cc{geom\_histogram}. What value do you
+  think is best?
+\item What happens when you set \cc{colour=cut} in the \cc{geom\_histogram}
+  aesthetic? What other options can you change?\sidenote{Look at the
+    \cc{geom\_histogram} help page: \url{http://had.co.nz/ggplot2/geom_histogram.html}}
+\item Try \cc{geom\_density}. Set \cc{fill=cut} and change the \cc{alpha} value.
+\item Try \cc{geom\_boxplot}.
+\end{enumerate}
+
+
+
+\section{Copy cat}
+
+
+<<F1, echo=FALSE, message=FALSE, fig.keep='none',results='hide'>>=
+data(mpg, package="ggplot2")
+# mpg$drv = as.character(mpg$drv)
+# mpg[mpg$drv == "f",]$drv = "Front"
+# mpg[mpg$drv == "r",]$drv = "Rear"
+# mpg[mpg$drv == "4",]$drv = "4wd"
+# mpg$drv = factor(mpg$drv,
+#    levels = c("Front", "Rear", "4wd"))
+
+g = ggplot(data=mpg, aes(x=displ, y=hwy))
+g1 = g + geom_point() + stat_smooth(linetype=2) +
+  xlab("Displacement") + ylab("Highway mpg")
+g2 = g + geom_point() + stat_smooth(aes(colour=drv))
+@
+
+
+
+\begin{marginfigure}
+  \centering
+<<dev='png', out.width='\\textwidth', echo=FALSE, message=FALSE>>=
+g1
+@
+ \caption{Graphics for section 1.}\label{F1}
+\end{marginfigure}
+
+
+The aim of this section is to recreate the graphics in figure \ref{F1}. Feel
+free to experiment. To begin, load the package
+
+<<message=FALSE>>=
+library("ggplot2")
+@
+
+\noindent and the \cc{mpg} data set
+
+<<results='hide'>>=
+data(mpg, package="ggplot2")
+dim(mpg)
+@
+\begin{enumerate}
+\item Figure \ref{F1}: Create a scatter plot of engine displacement,
+  \cc{displ}, against highway mpg, \cc{hwy}. To get started:
+
+<<fig.keep='none', tidy=FALSE>>=
+ggplot(data=mpg, aes(x=displ, y=hwy)) +
+  geom_point() + xlab("Displacement")
+@
+
+Now add a dashed loess line and change the $y$-axis label.
+Hint: try \cc{stat\_smooth} and \cc{ylab(`New label')}.
+
+<<echo=9*echo>>=
+<<F1>>
+@
+
+
+\begin{marginfigure}
+  \centering
+<<dev='png', out.width='\\textwidth', echo=FALSE, message=FALSE>>=
+g2
+@
+\caption{Graphics for section 1.}\label{F2}
+\end{marginfigure}
+\item Figure \ref{F2}: Using \cc{stat\_smooth}, add a loess line conditional
+  on the drive.
+<<echo=10*echo>>=
+<<F1>>
+@
+
+\end{enumerate}
+
+
+\clearpage
+
+\section*{Solutions}
+
+Solutions are contained within this package:
+<<eval=FALSE>>=
+library(jrGgplot2)
+vignette("solutions2", package="jrGgplot2")
+@
+\end{document}
