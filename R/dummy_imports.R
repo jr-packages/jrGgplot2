@@ -1,2 +1,2 @@
-#' @import  hexbin ggplot2 ggplot2movies
+#' @import  hexbin ggplot2 ggplot2movies quantreg
 NULL
