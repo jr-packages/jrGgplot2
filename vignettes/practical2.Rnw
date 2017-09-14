@@ -114,8 +114,7 @@ h +  stat_density2d(aes(x,y, fill=..density..),
 @
 
 do?
-\item What does \cc{stat\_bin2d()} and \cc{stat\_binhex()} do\sidenote{To use
-    \cc{stat\_binhex} you may need to install the \cc{hexbin} package.} - add it to the
+\item What does \cc{stat\_bin2d()} and \cc{stat\_binhex()} do - add it to the
   plot to find out! Try varying the parameters \cc{bins} and \cc{binwidth}.
 \end{itemize}
 
