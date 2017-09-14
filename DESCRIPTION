@@ -9,7 +9,7 @@ Description: An R package for the Advanced graphics R course run by Jumping Rive
 URL: https://jumpingrivers.com
 License: GPL-2 | GPL-3
 Depends:
-    R (>= 3.2)
+    R (>= 3.3.0)
 Imports:
     hexbin,
     ggplot2,

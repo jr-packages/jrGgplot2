@@ -38,8 +38,7 @@ knit_hooks$set(par=function(before, options, envir){
 
 \title{Advanced graphics: practical 1 \Sexpr{ifelse(echo, "solutions", "")}}
 
-\author[Dr Colin Gillespie]{Dr Colin S.
-  Gillespie}
+\author[Jumping Rivers]{Jumping Rivers}
 \date{}  % if the \date{} command is left out, the current date will be used
 
 % The following package makes prettier tables.  We're all about the bling!
