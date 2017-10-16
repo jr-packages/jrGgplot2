@@ -27,19 +27,14 @@ knit_hooks$set(par=function(before, options, envir){
             mgp=c(2,.7,0),tcl=-.01, las=1)
 }}, crop=hook_pdfcrop)
 @
-
-
-%\geometry{showframe}% for debugging purposes -- displays the margins
-
 \usepackage{amsmath}
-
 % Set up the images/graphics package
 \usepackage{graphicx}
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
 \graphicspath{{graphics/}}
 
 \title{Advanced graphics: practical 3 \Sexpr{ifelse(echo, "solutions", "")}}
-\author[Dr Colin Gillespie]{Dr Colin Gillespie}
+\author[Jumping Rivers]{Jumping Rivers}
 \date{}  % if the \date{} command is left out, the current date will be used
 
 % The following package makes prettier tables.  We're all about the bling!
@@ -76,7 +71,7 @@ When using \cc{ggplot2}, the easiest way of rearranging the graph or to alter la
 is to manipulate the data set. Consider the \cc{mpg} data set:
 
 <<message=FALSE>>=
-data(mpg, package = "jrGgplot2")
+data(mpg, package = "ggplot2")
 @
 
 Suppose we generate a scatter plot of engine displacement against highway mpg.
@@ -109,7 +104,7 @@ Instead, we can use a factor:
 
 <<>>=
 ##Reload the data just to make sure
-data(mpg, package="jrGgplot2")
+data(mpg, package="ggplot2")
 mpg$drv = factor(mpg$drv, labels = c("4wd", "Front", "Rear"))
 @
 \noindent To change the order of the, we need to use the \cc{factor} function:
@@ -244,7 +239,7 @@ ggplot(data=Beauty) +
 \section{The Google data set}
 
 <<F3,echo=FALSE>>=
-data(google)
+data(google, package="jrGgplot2")
 g = ggplot(google) +
   geom_point(aes(Rank, Users), alpha=0.2) +
   scale_y_log10(limit=c(1e0, 1e9))  +
