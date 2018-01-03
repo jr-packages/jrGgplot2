@@ -14,7 +14,10 @@ Imports:
     hexbin,
     ggplot2,
     ggplot2movies,
-    quantreg
+    quantreg,
+    jrData
+Remotes:
+    jr-packages/jrData
 Suggests:
     knitr
 VignetteBuilder: knitr
