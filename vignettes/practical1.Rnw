@@ -63,28 +63,6 @@ knit_hooks$set(par=function(before, options, envir){
 \maketitle% this prints the handout title, author, and date
 \bigskip
 
-\section{Course R package}
-
-Installing the the course R package\sidenote{A package is an \textit{add-on} or a \textit{module}. It provides additional functions and data.}
-is straightforward. First install \cc{drat}:
-
-<<eval=FALSE, tidy=FALSE>>=
-install.packages("drat")
-@
-
-\noindent Then
-
-<<eval=FALSE, tidy=FALSE>>=
-drat::addRepo("jr-packages")
-install.packages("jrGgplot2")
-@
-
-\noindent This R package contains copies of the practicals, solutions and data sets that we require. To load the package, use
-
-<<>>=
-library("jrGgplot2")
-@
-
 \section{Practical 1}
 
 To get you familiar with the underlying \cc{ggplot2} concepts, we'll recreate
