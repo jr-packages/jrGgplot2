@@ -65,23 +65,23 @@ knit_hooks$set(par=function(before, options, envir){
 
 \section{Practical 1}
 
-To get you familiar with the underlying \cc{ggplot2} concepts, we'll recreate
+To get you familiar with the underlying \textbf{ggplot2} concepts, we'll recreate
 some standard graphics. Some these of plots aren't particularly useful, we are
 just using them for illustration purposes.
 
-\newthought{To begin with}, load the \cc{ggplot2} package\marginnote{The \cc{ggplot2} package is
-automatically installed with \cc{jrGgplot2}.}
+\newthought{To begin with}, load the \textbf{ggplot2} package\marginnote{The \cc{ggplot2} package is
+automatically installed with \textbf{jrGgplot2}.}
 
 <<>>=
-library(ggplot2)
+library("ggplot2")
 @
 
 \noindent Next we load the beauty data set:\sidenote{Details of the beauty data
   set can be found at the end of this practical.}
 
 <<>>=
-library(jrGgplot2)
-data(Beauty)
+library("jrGgplot2")
+data(Beauty, package = "jrGgplot2")
 @
 
 \noindent When loading in data, it's always a good idea to carry out a sanity
@@ -99,15 +99,16 @@ Scatter plots are created using the point geom. Let's start with a basic scatter
 plot
 
 <<fig.keep='none'>>=
-ggplot(data=Beauty) + geom_point(aes(x=age, y=beauty))
+ggplot(data = Beauty) +
+  geom_point(aes(x = age, y = beauty))
 @
 
 \noindent To save typing, we can also store the plot as a variable:\marginnote{In
   this practical, we are creating the plots in a slightly verbose way.}
 
 <<cache=TRUE>>=
-g = ggplot(data=Beauty)
-g1 = g + geom_point(aes(x=age, y=beauty))
+g = ggplot(data = Beauty)
+g1 = g + geom_point(aes(x = age, y = beauty))
 @
 
 \noindent To view this plot, type \cc{g1}.
@@ -120,18 +121,18 @@ these parameters are required. This particular geom has other aesthetics:
 \item Experiment with other aesthetics. For example,
 
 <<fig.keep='none'>>=
-g + geom_point(aes(x=age, y=beauty, colour=gender))
+g + geom_point(aes(x = age, y = beauty, colour = gender))
 @
 
 \noindent or
 
 <<fig.keep='none', tidy=FALSE, cache=TRUE>>=
-g + geom_point(aes(x=age, y=beauty,
-                   alpha=evaluation, colour=gender))
+g + geom_point(aes(x = age, y = beauty, colour = gender,
+                   alpha = evaluation))
 @
 
-Some aesthetics, like \cc{shape} must be discrete. So use \mbox{\cc{shape
-  = factor(tenured)}}.
+Some aesthetics, like \cc{shape} must be discrete. So we have to transform the variable into a
+character or factor - \mbox{\cc{shape = factor(tenured)}}.
 \item Are there any differences between numeric values like \cc{tenured} and
   characters like \cc{gender} for some aesthetics? What happens if you convert
   \cc{tenured} to a factor in the \cc{colour} aesthetic. For example, \mbox{\cc{colour
@@ -140,17 +141,17 @@ Some aesthetics, like \cc{shape} must be discrete. So use \mbox{\cc{shape
   the \cc{aes} function? For example, compare
 
 <<fig.keep='none'>>=
-g + geom_point(aes(x=age, y=beauty, colour="blue"))
+g + geom_point(aes(x = age, y = beauty, colour = "blue"))
 @
 
 \noindent to
 
 <<fig.keep='none'>>=
-g + geom_point(aes(x=age, y=beauty), colour="blue")
+g + geom_point(aes(x = age, y = beauty), colour = "blue")
 @
 
 \item What happens when you set an aesthetic to a constant value. For example,
-  \cc{colour=2}. What happens if you put this argument outside of the \cc{aes}
+  \cc{colour = 2}. What happens if you put this argument outside of the \cc{aes}
   function?
 \end{itemize}
 
@@ -162,14 +163,14 @@ The box plot geom has the following aesthetics: \cc{x}, \cc{y}, \cc{colour},
 basic boxplot using the following commands:
 
 <<fig.keep='none'>>=
-g + geom_boxplot(aes(x=gender, y=beauty))
+g + geom_boxplot(aes(x = gender, y = beauty))
 @
 
 \noindent Similar to the point geom, we can add in aesthetics:
 
 <<fig.keep='none', cache=TRUE, tidy=FALSE>>=
-g + geom_boxplot(aes(x=gender, y=beauty,
-                             colour=factor(tenured)))
+g + geom_boxplot(aes(x = gender, y = beauty,
+                     colour = factor(tenured)))
 @
 
 \noindent Why do you think we have to convert \cc{tenured} to a discrete factor?
@@ -177,11 +178,12 @@ g + geom_boxplot(aes(x=gender, y=beauty,
 As before, experiment with the different aesthetics. For some of the aesthetics,
 you will need to convert the continuous variables to discrete variables. For example, this will give an error:
 <<eval=FALSE>>=
-g + geom_boxplot(aes(x=gender, y=beauty, colour=tenured))
+g + geom_boxplot(aes(x = gender, y = beauty, colour = tenured))
 @
 \noindent while this is OK%\sidenote{Why?}
 <<fig.keep='none', tidy=FALSE>>=
-g + geom_boxplot(aes(x=gender, y=beauty, colour=factor(tenured)))
+g + geom_boxplot(aes(x = gender, y = beauty,
+                     colour = factor(tenured)))
 @
 
 \noindent Make sure you play about with the different aesthetics.
@@ -193,9 +195,9 @@ plot ``types''.\marginnote{In the lectures we will discuss what this means.} For
 example,
 
 <<fig.keep='none', tidy=FALSE>>=
-g + geom_boxplot(aes(x=gender, y=beauty,
-                          colour=factor(tenured))) +
-  geom_point(aes(x=gender, y=beauty))
+g + geom_boxplot(aes(x = gender, y = beauty,
+                          colour = factor(tenured))) +
+  geom_point(aes(x = gender, y = beauty))
 @
 
 \begin{itemize}
@@ -206,9 +208,9 @@ g + geom_boxplot(aes(x=gender, y=beauty,
     \cc{geom\_jitter}, but you get the point.}:
 
 <<fig.keep='none', tidy=FALSE>>=
-g + geom_boxplot(aes(x=gender, y=beauty,
-                         colour=factor(tenured))) +
-  geom_jitter(aes(x=gender, y=beauty))
+g + geom_boxplot(aes(x = gender, y = beauty,
+                         colour = factor(tenured))) +
+  geom_jitter(aes(x = gender, y = beauty))
 @
 \end{itemize}
 
@@ -219,7 +221,7 @@ The bar geom has the following aesthetics: \cc{x}, \cc{colour}, \cc{fill},
 started:
 
 <<fig.keep='none'>>=
-g + geom_bar(aes(x=factor(tenured)))
+g + geom_bar(aes(x = factor(tenured)))
 @
 \begin{itemize}
 \item As before, try different aesthetic combinations. Convert parameters to
@@ -234,8 +236,8 @@ Beauty$dec = factor(signif(Beauty$age, 1))
 \noindent then plot:
 
 <<fig.keep='none'>>=
-g = ggplot(data=Beauty)
-g + geom_bar(aes(x=gender, fill=dec))
+g = ggplot(data = Beauty)
+g + geom_bar(aes(x = gender, fill = dec))
 @
 
 \noindent We can adjust the layout of this bar plot using ggplot's position
@@ -243,8 +245,8 @@ adjustments. The five possible adjustments are listed in table \ref{T1}. The
 \textbf{default} adjustment is \cc{stack}
 
 <<fig.keep='none', tidy=FALSE>>=
-g + geom_bar(aes(x=gender, fill=dec),
-             position="stack")
+g + geom_bar(aes(x = gender, fill = dec),
+             position = "stack")
 @
 
 \item Try the other adjustments.
@@ -252,10 +254,10 @@ g + geom_bar(aes(x=gender, fill=dec),
 \begin{marginfigure}
 \centering
 <<echo=FALSE>>=
-g + geom_bar(aes(x=gender, fill=dec),
-             position="dodge")
+g + geom_bar(aes(x = gender, fill = dec),
+             position = "dodge")
 @
-\caption{Barplot of ages using \cc{position="dodge"}.}
+\caption{Barplot of ages using \cc{position = "dodge"}.}
 \end{marginfigure}
 \end{itemize}
 
