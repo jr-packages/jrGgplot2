@@ -1,12 +1,12 @@
 Package: jrGgplot2
 Type: Package
 Title: Advanced R graphics
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person("Colin", "Gillespie",  
-  email="csgillespie@gmail.com", 
+  email="colin@jumpingrivers.com", 
   role = c("aut", "cre"))
 Description: An R package for the Advanced graphics R course run by Jumping Rivers Ltd.
-URL: https://jumpingrivers.com
+URL: https://www.jumpingrivers.com
 License: GPL-2 | GPL-3
 Depends:
     R (>= 3.3.0)
