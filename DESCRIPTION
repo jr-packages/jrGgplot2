@@ -19,7 +19,7 @@ Imports:
 Remotes:
     jr-packages/jrData
 Suggests:
-    knitr
+    knitr, tufte
 Encoding: UTF-8
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
