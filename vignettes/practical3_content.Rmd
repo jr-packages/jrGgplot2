@@ -1,0 +1,256 @@
+This practical aims to guide you through some of the key ideas in data manipulation. I've tried to construct this practical in such a way that you get to experiment with the various tools. Feel free to experiment!
+
+```{r,echo=FALSE}
+library("ggplot2")
+data(aphids, package = "jrGgplot2")
+```
+
+## Factors
+
+When using **ggplot2**, the easiest way of rearranging the graph or to alter labels
+is to manipulate the data set. Consider the `mpg` data set:
+
+```{r,message=FALSE, echo = TRUE}
+data(mpg, package = "ggplot2")
+```
+
+Suppose we generate a scatter plot of engine displacement against highway mpg.
+
+```{r,tidy=FALSE, echo = TRUE}
+g = ggplot(data=mpg, aes(x=displ, y=hwy)) +
+  geom_point()
+```
+
+\noindent Next, we add a loess line, conditional on the drive type:
+
+```{r,fig.keep='none', message=FALSE, echo = TRUE}
+g + stat_smooth(aes(colour=drv))
+```
+
+\noindent While this graph is suitable for exploring the data; for publication,
+we would like to rename the axis and legend labels. To change the axis labels,
+we can rename the data frame columns or use `xlab` and `ylab`. To change
+the order of the legend, we need to manipulate the data. Since `drv` is
+a character, we could use:
+
+```{r,eval=FALSE, echo = TRUE}
+mpg[mpg$drv == "4",]$drv = "4wd"
+mpg[mpg$drv == "f",]$drv = "Front"
+mpg[mpg$drv == "r",]$drv = "Rear"
+```
+
+\noindent However the legend will still be ordered alphabetically.
+Instead, we can use a factor:
+
+```{r, echo = TRUE}
+##Reload the data just to make sure
+data(mpg, package="ggplot2")
+mpg$drv = factor(mpg$drv, labels = c("4wd", "Front", "Rear"))
+```
+\noindent To change the order of the, we need to use the `factor` function:
+```{r,tidy=FALSE, echo = TRUE}
+mpg$drv = factor(mpg$drv,
+                 levels = c("Front", "Rear", "4wd"))
+```
+
+\noindent The legend now displays the labels in the order: `Front`, `Rear` and `4wd`.
+
+```{r, echo=FALSE, cache=TRUE, pos.width="\\textwidth", fig.width=6, fig.pos = "t", fig.cap = "Final figure from section 2.", fig.height = 5}
+aphids$Block = factor(aphids$Block)
+aphids$Water = factor(aphids$Water,
+                      levels=c("Low", "Medium", "High"))
+ga = ggplot(data=aphids) +
+  geom_point(aes(Time, Aphids, colour=Block)) +
+  facet_grid(Nitrogen ~ Water) +
+  geom_line(aes(Time, Aphids, colour=Block)) +
+  theme_bw()
+
+print(ga)
+```
+
+
+## Aphids
+
+This data set consists of seven observations on cotton aphid counts on twenty randomly chosen leaves in each plot, for twenty-seven treatment-block
+combinations. The data were recorded in July 2004 in Lamesa, Texas. The
+treatments consisted of three nitrogen levels (blanket, variable and none),
+three irrigation levels (low, medium and high) and three blocks, each being a
+distinct area. Irrigation treatments were randomly assigned within each block as
+whole plots. Nitrogen treatments were randomly assigned within each whole block
+as split plots.
+
+```{r,cache=TRUE, results='hide', echo = TRUE}
+data(aphids, package="jrGgplot2")
+```
+
+\noindent The sampling times are once per week.
+
+\newthought{Reproduce} figure 1. Here are some hints to get you started.
+The key idea is to think of the plot in terms of layers. So
+
+- Leave the ordering of factors to the end
+- The plot contains a combination of `geom_line` and `geom_point`.
+- You can change the x-axis label using
+```{r,eval=FALSE, tidy=FALSE, echo = TRUE}
+ + xlab("Time")
+```
+- Change the theme using `theme_bw()`
+
+\newpage
+```{r,fig.keep='none', tidy=FALSE}
+##Code for figure 1
+aphids$Block = factor(aphids$Block)
+aphids$Water = factor(aphids$Water,
+                      levels=c("Low", "Medium", "High"))
+ga = ggplot(data=aphids) +
+  geom_point(aes(Time, Aphids, colour=Block)) +
+  facet_grid(Nitrogen ~ Water) +
+  geom_line(aes(Time, Aphids, colour=Block)) +
+  theme_bw()
+```
+
+## The Beauty data set
+
+First load the beauty data set
+```{r, echo = TRUE}
+data(Beauty, package="jrGgplot2")
+```
+
+\noindent In practical 1, we split data up by both gender and age:
+
+```{r,fig.keep='none', echo = TRUE}
+Beauty$dec = signif(Beauty$age, 1)
+g = ggplot(data=Beauty)
+g1 = g + geom_bar(aes(x=gender, fill=factor(dec)))
+```
+
+```{r,echo=FALSE, pos.width="\\textwidth", fig.margin = TRUE, fig.cap = "Stacked bar chart of the Beauty data set.", label = "F2", fig.height = 4}
+g1
+```
+
+\noindent to get figure 2. Rather than using the `fill` aesthetic, redo the plot but use
+`facet_grid` and `facet_wrap`. For example,
+
+```{r,fig.keep='none', echo = TRUE}
+g2 = g + geom_bar(aes(x=gender)) +
+  facet_grid(. ~ dec)
+```
+
+\noindent Experiment with:
+
+- the `margins` argument
+```{r, fig.keep='none'}
+g + geom_bar(aes(x=gender)) + facet_grid(. ~ dec, margins=TRUE)
+```
+
+- the `scales=`free_y'` argument
+```{r,fig.keep='none'}
+## Notice that the females have disappeared from the "70" facet.
+## Probably not what we wanted.
+g + geom_bar(aes(x=gender)) + facet_grid(. ~ dec, scales="free_x")
+```
+- the layout, i.e. column or row.
+```{r,fig.keep='none'}
+g + geom_bar(aes(x=gender)) + facet_grid(dec ~.)
+```
+
+How would you change the panel labels?
+```{r,fig.keep='none'}
+##Relabel the factor
+Beauty$dec = factor(Beauty$dec,
+                    labels=c("Thirties", "Forties", "Fifties", "Sixties", "Seventies"))
+
+## Plot as before
+ggplot(data=Beauty) +
+  geom_bar(aes(x=gender)) +
+  facet_grid(dec ~.)
+```
+
+## The Google data set
+
+```{r,F3,echo=FALSE}
+data(google, package="jrGgplot2")
+g = ggplot(google) +
+  geom_point(aes(Rank, Users), alpha=0.2) +
+  scale_y_log10(limit=c(1e0, 1e9))  +
+  facet_grid(Advertising~.) +
+  geom_point(data=subset(google, Category=="Social Networks"),
+             aes(Rank, Users), colour="Red",  size=2)
+```
+
+Google recently released a data set of the top 1000 websites. The data set
+contains the following categories: `Rank`, `Site`, `Category`,
+`Users`, `Views` and `Advertising`. First we load the data
+
+```{r, echo = TRUE}
+data(google, package="jrGgplot2")
+```
+
+```{r,echo=FALSE, pos.width="\\textwidth", fig.margin = TRUE, fig.cap = "The Google data set.", fig.height = 4}
+g
+```
+
+
+1. Create a scatter of plot of `Rank` and `Views`.
+2. Using `scale_y_log10()` transform the `y` scale.
+3. Uses facets to split the plot by its advertising status.
+4. Use another `geom_point()` layer to highlight the _Social Networks_ sites to figure 3.
+
+```{r,tidy=FALSE}
+g = ggplot(google) +
+  geom_point(aes(Rank, Users), alpha=0.2) +
+  scale_y_log10(limit=c(1e0, 1e9))  +
+  facet_grid(Advertising~.) +
+  geom_point(data=subset(google, Category=="Social Networks"),
+             aes(Rank, Users), colour="Red",  size=2)
+```
+
+
+## An example data set
+
+An experiment was conducted: two treatments, `A` and `B`, were tested. The data can be downloaded into R using the following commands:
+```{r,}
+data(cell_data, package="jrGgplot2")
+```
+\noindent Within each treatment group, there are two patient types: `Case` and `Control`. What plot do you think would be most suitable for this data?
+
+First we'll create a base object
+
+```{r,tidy=FALSE, echo = TRUE}
+##This doesn't plot anything
+g = ggplot(cell_data, aes(treatment, values)) +
+  facet_grid(.~type)
+```
+
+Experiment plotting the data using boxplots, jittered points, histograms, errors, etc. Which methods is optimal (for this data set).
+
+```{r,fig.keep='none',  message=FALSE}
+##Boxplot
+g + geom_boxplot()
+
+## Dotplot
+g + geom_dotplot(binaxis="y", stackdir="center",
+                 colour="blue", fill="blue")
+
+## Plain (jittered) points
+g + geom_jitter()
+
+## Dotplots + error bars
+g +  geom_dotplot(binaxis="y", stackdir="center",
+                  colour="blue", fill="blue") +
+  stat_summary(geom="errorbar",
+               fun.ymin=min, fun.ymax=max, fun.y=mean,
+               width=0.2)
+```
+
+
+
+
+## Solutions
+
+Solutions are contained within this package:
+```{r,eval=FALSE, echo = TRUE}
+library(jrGgplot2)
+vignette("solutions3", package="jrGgplot2")
+```
+

@@ -1,0 +1,21 @@
+---
+title: "Practical 2"
+author: "Jumping Rivers"
+output:
+  tufte::tufte_handout:
+    latex_engine: xelatex
+  tufte::tufte_html: default
+vignette: >
+  %\VignetteIndexEntry{solutions2}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r echo=FALSE}
+library(tufte)
+knitr::opts_chunk$set(results = "show", echo = TRUE)
+```
+
+```{r child = 'practical2_content.Rmd'}
+```
+  
