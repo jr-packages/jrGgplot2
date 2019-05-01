@@ -1,7 +1,7 @@
 Package: jrGgplot2
 Type: Package
 Title: Advanced R graphics
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: person("Colin", "Gillespie",  
   email="colin@jumpingrivers.com", 
   role = c("aut", "cre"))
@@ -19,7 +19,7 @@ Imports:
 Remotes:
     jr-packages/jrData
 Suggests:
-    knitr, tufte
+    knitr, tufte, testthat, lintr
 Encoding: UTF-8
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1

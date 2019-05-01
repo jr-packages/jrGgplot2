@@ -10,3 +10,7 @@ practical[1|2|3].tex
 *.synctex.gz
 *.bbl
 *.blg
+practical[1|2|3]/**/*.pdf
+practical[1|2|3]/**/*.RData
+practical[1|2|3]/**/*.rdx
+practical[1|2|3]/**/*.rdb

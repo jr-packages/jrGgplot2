@@ -4,4 +4,5 @@
 ^deploy.sh$
 ^.gitignore$
 ^.travis.yml$
+^.lintr$
 ^LICENSE$
