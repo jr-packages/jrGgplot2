@@ -15,7 +15,7 @@ Imports:
     ggplot2,
     ggplot2movies,
     quantreg,
-    jrData, ggthemes, hrbrthemes, ggridges
+    jrData, ggthemes, hrbrthemes, ggridges, gridExtra
 Remotes:
     jr-packages/jrData
 Suggests:
