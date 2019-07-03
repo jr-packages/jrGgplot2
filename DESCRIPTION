@@ -1,9 +1,9 @@
 Package: jrGgplot2
 Type: Package
 Title: Advanced R graphics
-Version: 0.1.3
-Authors@R: person("Colin", "Gillespie",  
-  email="colin@jumpingrivers.com", 
+Version: 0.1.4
+Authors@R: person("Jumping", "Rivers",  
+  email="info@jumpingrivers.com", 
   role = c("aut", "cre"))
 Description: An R package for the Advanced graphics R course run by Jumping Rivers Ltd.
 URL: https://www.jumpingrivers.com
@@ -15,7 +15,7 @@ Imports:
     ggplot2,
     ggplot2movies,
     quantreg,
-    jrData
+    jrData, ggthemes, hrbrthemes, ggridges
 Remotes:
     jr-packages/jrData
 Suggests:
