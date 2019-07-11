@@ -1,0 +1,71 @@
+---
+title: "Advanced stat functions"
+author: "Jumping Rivers"
+output:
+  tufte::tufte_handout:
+    latex_engine: xelatex
+  tufte::tufte_html: default
+vignette: >
+  %\VignetteIndexEntry{Advanced stat functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+Perhaps the easiest `stat_*` to consider is the `stat_summary()` function. This function summarises `y` values at every unique `x` value. This is quite handy, for example, when adding single points that summarise the data or adding error bars.
+
+```{r, echo=FALSE, message=TRUE, label="F2-11", fig.margin = TRUE, fig.cap="Average number of units consumed per actor.", fig.width=4, fig.height=4, message = FALSE}
+library("ggplot2")
+data(bond, package = "jrGgplot2")
+ggplot(bond, aes(Actor, Alcohol_Units)) +
+             stat_summary(geom = "point", fun.y = mean)
+```
+
+A simple plot to create, is the mean alcohol consumption per actor (figure 1)
+
+```{r, cache=TRUE, fig.keep="none", echo = TRUE, message = FALSE}
+library("ggplot2")
+data(bond, package = "jrGgplot2")
+ggplot(bond, aes(Actor, Alcohol_Units)) +
+  stat_summary(geom = "point", 
+               fun.y = mean)
+```
+
+In the above piece of code we calculate the mean number of alcohol units consumed by each Actor. These x-y values are passed to the `point` geom. We can use any function for `fun.y` provided it takes in a vector and returns a single point. For example, we could calculate the range of values, as in figure 2:
+
+```{r, tidy=FALSE, fig.keep="none", echo = TRUE}
+ggplot(bond, aes(Actor, Alcohol_Units)) +
+    stat_summary(geom = "point",
+                 fun.y =  function(i) max(i) - min(i))
+```
+
+```{r, echo=FALSE, message=TRUE, label="F2-12", fig.margin = TRUE, fig.cap="Plot of the range for each actor.", fig.width=4, fig.height=4}
+ggplot(bond, aes(Actor, Alcohol_Units)) +
+             stat_summary(geom = "point", fun.y = mean)
+```
+
+Or we could work out confidence intervals for the mean number of Units consumed (figure 13):
+
+```{r, tidy=FALSE, fig.keep="none", warning=FALSE, message=FALSE, error=FALSE, echo = TRUE}
+## Standard error function
+std_err = function(i)
+    dt(0.975, length(i) - 1) * sd(i) / sqrt(length(i))
+
+ggplot(bond, aes(x = Actor, y = Alcohol_Units)) +
+    stat_summary(fun.ymin = function(i) mean(i) - std_err(i),
+                 fun.ymax = function(i) mean(i) + std_err(i),
+                 colour = "steelblue", geom = "errorbar",
+                 width = 0.2, lwd = 2) +
+    ylim(c(0, 20))
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE,cache=TRUE, label="F2-13", fig.margin = TRUE, fig.cap="Confidence intervals for the mean number of units consumed by each actor.", fig.width=4, fig.height=4}
+ggplot(bond, aes(x = Actor, y = Alcohol_Units)) +
+    stat_summary(fun.ymin = function(i) mean(i) - std_err(i),
+                 fun.ymax = function(i) mean(i) + std_err(i),
+                 colour = "steelblue", geom = "errorbar",
+                 width = 0.2, lwd = 2) +
+    ylim(c(0, 20))
+```
+
+To calculate the bounds, we work out the standard deviation (`sd(i)`), then number of movies per actor (`length(i)`) and the correct value from the $t$ distributions, with $n-1$ degrees of freedom.
