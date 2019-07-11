@@ -1,0 +1,65 @@
+---
+title: "Advanced layouts"
+author: "Jumping Rivers"
+output:
+  tufte::tufte_handout:
+    latex_engine: xelatex
+  tufte::tufte_html: default
+vignette: >
+  %\VignetteIndexEntry{Advanced Layouts}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, label="F4-5", fig.cap="Scatter plots of the bond data set showing different colour schemes", fig.width=6, fig.height=4, echo = FALSE, fig.pos="t", message = FALSE}
+library("ggplot2")
+library("gridExtra")
+data(bond, package = "jrGgplot2")
+theme_set(theme_bw())
+g = ggplot(data = bond, aes(x = Alcohol_Units, y = Kills)) + 
+  geom_point(aes(colour = Actor))
+g_l = g + theme(legend.position = "top")
+g1 = g_l + scale_colour_hue(l = 70, c = 60)
+g2 = g_l + scale_colour_brewer(palette = "PuOr", type = "div")
+g3 = g_l + scale_colour_grey()
+g4 = g_l + scale_colour_grey()
+grid.arrange(g1, g2, g3, nrow = 1)
+```
+
+\noindent An alternative way of creating figure grids, is to use viewports. Using viewports gives you more flexibility, but is more complicated. First, we load the __grid__ package and create a convenience function.
+
+```{r,  tidy=FALSE, echo = TRUE, message = FALSE}
+library("ggplot2")
+vplayout = function(x, y)
+  viewport(layout.pos.row = x, layout.pos.col = y)
+```
+
+\noindent Next we create a new page, with a $2 \times 2$ layout
+
+```{r, fig.keep='none', cache=TRUE, echo = TRUE}
+library("grid")
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(2, 2)))
+```
+
+\noindent Finally we add the individual graphics. The plot created using the `h` object, is placed on the first row and spans both columns:
+
+```{r, fig.keep='none', echo = TRUE}
+print(g1, vp = vplayout(1, 1:2))
+```
+
+The other figures are placed on the second row (figure 2):
+
+```{r, fig.keep='none', echo = TRUE}
+print(g2, vp = vplayout(2, 1))
+print(g3, vp = vplayout(2, 2))
+```
+
+
+```{r, label="F4-6", fig.cap="An example plot using the viewports. The top plot is spans two columns.", fig.width=6, fig.height=6, fig.pos='t', echo = FALSE}
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(2, 2)))
+print(g1, vp = vplayout(1, 1:2))
+print(g2, vp = vplayout(2, 1))
+print(g3, vp = vplayout(2, 2))
+```

@@ -1,6 +1,4 @@
-To get you familiar with the underlying **ggplot2** concepts, we'll recreate
-some standard graphics. Some these of plots aren't particularly useful, we are
-just using them for illustration purposes.
+If you attended the Introduction to R course with us, you will already be familiar with some of the basic **ggplot2** concepts. This practical serves as a reminder on some of those concepts, whilst also introducing some new ones. If you didn't attend this course, use this practical as a introduction to the basic concepts of **ggplot2**. Some these of plots aren't particularly useful, we are just using them for illustration purposes.
 
 \newthought{To begin with}, load the **ggplot2** package^[The **ggplot2** package is
 automatically installed with **jrGgplot2**.]
