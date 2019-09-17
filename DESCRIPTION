@@ -15,7 +15,14 @@ Imports:
     ggplot2,
     ggplot2movies,
     quantreg,
-    jrData, ggthemes, hrbrthemes, ggridges, gridExtra, ggrepel
+    jrData, 
+    ggthemes, 
+    hrbrthemes, 
+    ggridges, 
+    gridExtra, 
+    ggrepel, 
+    ggthemes, 
+    plotly
 Remotes:
     jr-packages/jrData
 Suggests:

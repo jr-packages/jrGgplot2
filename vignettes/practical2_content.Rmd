@@ -29,7 +29,7 @@ h
 
 \noindent We can create a simple scatter plot of this data using the following command
 
-```{r}
+```{r, echo = TRUE}
 h = ggplot(df) + geom_point(aes(x, y))
 ```
 
