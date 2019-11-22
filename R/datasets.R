@@ -16,7 +16,8 @@
 #' six undergraduate students: three women and three men.
 #' The raters were told to use a 10 (highest) to 1 rating scale,
 #' to concentrate on the physiognomy of the
-#' professor in the picture, to make their ratings independent of age, and to keep 5 in mind as an average. The scores were then normalised.}
+#' professor in the picture, to make their ratings independent of age, and to keep 5 in mind as
+#' an average. The scores were then normalised.}
 #' }
 #' @name Beauty
 #' @docType data
@@ -27,7 +28,15 @@ NULL
 
 #' Aphids data set
 #'
-#' The is data described in Matis et al, 2008. The data set consists of five observations on cotton aphid counts on twenty randomly chosen leaves in each plot, for twenty-seven treatment-block combinations. The data were recorded in July 2004 in Lamesa, Texas. The treatments consisted of three nitrogen levels (blanket, variable and zero), three irrigation levels (low, medium and high) and three blocks, each being a distinct area. Irrigation treatments were randomly assigned within each block as whole plots. Nitrogen treatments were randomly assigned within each whole block as split plots. . Note that the sampling times are $t$=0, 1.14, 2.29, 3.57 and 4.57 weeks (i.e. every 7 to 8 days).
+#' The is data described in Matis et al, 2008. The data set consists of five observations on
+#' cotton aphid counts on twenty randomly chosen leaves in each plot, for twenty-seven
+#' treatment-block combinations. The data were recorded in July 2004 in Lamesa, Texas.
+#' The treatments consisted of three nitrogen levels (blanket, variable and zero), three
+#' irrigation levels (low, medium and high) and three blocks, each being a distinct area.
+#' Irrigation treatments were randomly assigned within each block as whole plots. Nitrogen
+#' treatments were randomly assigned within each whole block as split plots.
+#' Note that the sampling times are $t$=0, 1.14, 2.29, 3.57 and 4.57 weeks
+#' (i.e. every 7 to 8 days).
 #' \describe{
 #' \item{Time}{Sampling time (in weeks). This has been slightly simplified}
 #' \item{Water}{Water level at that particular plot: Low, Medium and High}
@@ -62,7 +71,8 @@ NULL
 
 #' Dummy cell data set
 #'
-#' Example cell data set. An experiment was conducted involving two cell types (Case and Control) and two treatments (A and B). The data is stored as a data frame:
+#' Example cell data set. An experiment was conducted involving two cell types (Case and Control)
+#' and two treatments (A and B). The data is stored as a data frame:
 #' \describe{
 #' \item{values}{measurements from the experiment}
 #' \item{treatment}{either A or B}

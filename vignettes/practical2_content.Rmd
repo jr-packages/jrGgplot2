@@ -19,7 +19,7 @@ To begin with we will create an example data frame:
 ## If your computer is slow when plotting reduce the value of n
 library("jrGgplot2")
 library("ggplot2")
-df = overplot_data(n=20000)
+df = overplot_data(n = 20000)
 h = ggplot(df) + geom_point(aes(x, y))
 ```
 
@@ -44,8 +44,8 @@ combination of:
 - What does
 
 ```{r,cache=TRUE, fig.keep='none', tidy=FALSE, echo = TRUE}
-h +  stat_density2d(aes(x,y, fill=..density..),
-                contour=FALSE, geom="tile")
+h +  stat_density2d(aes(x, y, fill = ..density..),
+                contour = FALSE, geom = "tile")
 ```
 do?    
 - What does `stat_bin2d()` and `stat_binhex()` do - add it to the
@@ -56,7 +56,7 @@ do?
 The diamonds data set contains the prices and other attributes of almost 54,000 diamonds. It is a data frame with $53,940$ rows and $10$ variables. First, load the diamonds data set:
 
 ```{r, echo = TRUE}
-data(diamonds, package="ggplot2")
+data(diamonds, package = "ggplot2")
 ```
 
 \noindent and look at the help file:
@@ -68,8 +68,8 @@ data(diamonds, package="ggplot2")
 \noindent We can construct a histogram of diamond depth using the following commands:
 
 ```{r,fig.keep='none', message=FALSE, echo = TRUE}
-i1 = ggplot(data=diamonds) +
-  geom_histogram(aes(x=depth))
+i1 = ggplot(data = diamonds) +
+  geom_histogram(aes(x = depth))
 ```
 
 ```{r,echo=FALSE, message=FALSE, fig.margin = TRUE, fig.cap = "Histogram of the diamond data set.", fig.height = 4}
@@ -92,18 +92,11 @@ i1
 
 
 ```{r,F1, echo=FALSE, message=FALSE, fig.keep='none',results='hide'}
-data(mpg, package="ggplot2")
-# mpg$drv = as.character(mpg$drv)
-# mpg[mpg$drv == "f",]$drv = "Front"
-# mpg[mpg$drv == "r",]$drv = "Rear"
-# mpg[mpg$drv == "4",]$drv = "4wd"
-# mpg$drv = factor(mpg$drv,
-#    levels = c("Front", "Rear", "4wd"))
-
-g = ggplot(data=mpg, aes(x=displ, y=hwy))
-g1 = g + geom_point() + stat_smooth(linetype=2) +
+data(mpg, package = "ggplot2")
+g = ggplot(data = mpg, aes(x = displ, y = hwy))
+g1 = g + geom_point() + stat_smooth(linetype = 2) +
   xlab("Displacement") + ylab("Highway mpg")
-g2 = g + geom_point() + stat_smooth(aes(colour=drv))
+g2 = g + geom_point() + stat_smooth(aes(colour = drv))
 ```
 
 ```{r,dev='png', out.width='\\textwidth', echo=FALSE, message=FALSE, fig.margin = TRUE, fig.cap = "Graphics for section 1.", fig.height = 4}
@@ -120,7 +113,7 @@ library("ggplot2")
 \noindent and the `mpg` data set
 
 ```{r,results='hide', echo = TRUE}
-data(mpg, package="ggplot2")
+data(mpg, package = "ggplot2")
 dim(mpg)
 ```
 
@@ -128,7 +121,7 @@ dim(mpg)
   `displ`, against highway mpg, `hwy`. To get started:
 
 ```{r,fig.keep='none', tidy=FALSE, echo = TRUE}
-ggplot(data=mpg, aes(x=displ, y=hwy)) +
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
   geom_point() + xlab("Displacement")
 ```
 
@@ -136,8 +129,8 @@ Now add a dashed loess line and change the $y$-axis label.
 Hint: try `stat_smooth` and `ylab(`New label')`.
 
 ```{r}
-g = ggplot(data=mpg, aes(x=displ, y=hwy))
-g1 = g + geom_point() + stat_smooth(linetype=2) +
+g = ggplot(data = mpg, aes(x = displ, y = hwy))
+g1 = g + geom_point() + stat_smooth(linetype = 2) +
   xlab("Displacement") + ylab("Highway mpg")
 ```
 
@@ -147,7 +140,7 @@ g2
 2. Figure 4: Using `stat_smooth`, add a loess line conditional
   on the drive.
 ```{r}
-g2 = g + geom_point() + stat_smooth(aes(colour=drv))
+g2 = g + geom_point() + stat_smooth(aes(colour = drv))
 ```
 
 ## Solutions
@@ -155,5 +148,5 @@ g2 = g + geom_point() + stat_smooth(aes(colour=drv))
 Solutions are contained within this package:
 ```{r,eval=FALSE}
 library(jrGgplot2)
-vignette("solutions2", package="jrGgplot2")
+vignette("solutions2", package = "jrGgplot2")
 ```

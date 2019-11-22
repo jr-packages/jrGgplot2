@@ -1,32 +1,36 @@
-Package: jrGgplot2
 Type: Package
+Package: jrGgplot2
 Title: Advanced R graphics
-Version: 0.1.4
-Authors@R: person("Jumping", "Rivers",  
-  email="info@jumpingrivers.com", 
-  role = c("aut", "cre"))
-Description: An R package for the Advanced graphics R course run by Jumping Rivers Ltd.
-URL: https://www.jumpingrivers.com
+Version: 0.1.5
+Authors@R: 
+    person(given = "Jumping",
+           family = "Rivers",
+           role = c("aut", "cre"),
+           email = "info@jumpingrivers.com")
+Description: An R package for the Advanced graphics R course run
+    by Jumping Rivers Ltd.
 License: GPL-2 | GPL-3
+URL: https://www.jumpingrivers.com
 Depends:
     R (>= 3.3.0)
 Imports:
-    hexbin,
     ggplot2,
     ggplot2movies,
-    quantreg,
-    jrData, 
-    ggthemes, 
-    hrbrthemes, 
-    ggridges, 
-    gridExtra, 
-    ggrepel, 
-    ggthemes, 
-    plotly
-Remotes:
-    jr-packages/jrData
+    ggrepel,
+    ggridges,
+    ggthemes,
+    gridExtra,
+    hexbin,
+    hrbrthemes,
+    plotly,
+    quantreg
 Suggests:
-    knitr, tufte, testthat, lintr, DT
+    DT,
+    formatR,
+    knitr,
+    lintr,
+    tufte
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
-VignetteBuilder: knitr
 RoxygenNote: 6.1.1

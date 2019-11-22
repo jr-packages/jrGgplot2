@@ -11,7 +11,8 @@ data(cell_data)
 A data frame
 }
 \description{
-Example cell data set. An experiment was conducted involving two cell types (Case and Control) and two treatments (A and B). The data is stored as a data frame:
+Example cell data set. An experiment was conducted involving two cell types (Case and Control)
+and two treatments (A and B). The data is stored as a data frame:
 \describe{
 \item{values}{measurements from the experiment}
 \item{treatment}{either A or B}

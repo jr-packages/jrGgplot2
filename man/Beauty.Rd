@@ -27,7 +27,8 @@ data set and contains the following variables:
 six undergraduate students: three women and three men.
 The raters were told to use a 10 (highest) to 1 rating scale,
 to concentrate on the physiognomy of the
-professor in the picture, to make their ratings independent of age, and to keep 5 in mind as an average. The scores were then normalised.}
+professor in the picture, to make their ratings independent of age, and to keep 5 in mind as
+an average. The scores were then normalised.}
 }
 }
 \keyword{datasets}
