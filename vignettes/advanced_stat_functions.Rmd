@@ -22,7 +22,7 @@ ggplot(bond, aes(Actor, Alcohol_Units)) +
 
 A simple plot to create, is the mean alcohol consumption per actor (figure 1)
 
-```{r, cache=TRUE, fig.keep="none", echo = TRUE, message = FALSE}
+```{r, fig.keep="none", echo = TRUE, message = FALSE}
 library("ggplot2")
 data(bond, package = "jrGgplot2")
 ggplot(bond, aes(Actor, Alcohol_Units)) +
@@ -59,7 +59,7 @@ ggplot(bond, aes(x = Actor, y = Alcohol_Units)) +
 ```
 
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE,cache=TRUE, label="F2-13", fig.margin = TRUE, fig.cap="Confidence intervals for the mean number of units consumed by each actor.", fig.width=4, fig.height=4}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, label="F2-13", fig.margin = TRUE, fig.cap="Confidence intervals for the mean number of units consumed by each actor.", fig.width=4, fig.height=4}
 ggplot(bond, aes(x = Actor, y = Alcohol_Units)) +
     stat_summary(fun.ymin = function(i) mean(i) - std_err(i),
                  fun.ymax = function(i) mean(i) + std_err(i),

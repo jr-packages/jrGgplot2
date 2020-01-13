@@ -73,7 +73,7 @@ print(ga)
 
 This data set consists of seven observations on cotton aphid counts on twenty randomly chosen leaves in each plot, for twenty-seven treatment-block
 combinations. The data were recorded in July 2004 in Lamesa, Texas. The
-treatments consisted of three nitrogen levels (blanket, variable and none),
+treatments consisted of three nitrogen levels (block, variable and none),
 three irrigation levels (low, medium and high) and three blocks, each being a
 distinct area. Irrigation treatments were randomly assigned within each block as
 whole plots. Nitrogen treatments were randomly assigned within each whole block
