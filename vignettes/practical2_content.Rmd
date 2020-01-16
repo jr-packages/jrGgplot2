@@ -83,7 +83,7 @@ i1
   think is best?
 2. What happens when you set `colour=cut` in the `geom_histogram`
   aesthetic? What other options can you change?^[Look at the `geom_histogram` help page: http://had.co.nz/ggplot2/geom_histogram.html}
-3. Try `geom_density`. Set `fill=cut` and change the `alpha` value.
+3. Replace `geom_histogram` with `geom_density`. Set `fill=cut` and change the `alpha` value.
 4. Try `geom_boxplot`.
 
 
@@ -122,16 +122,18 @@ dim(mpg)
 
 ```{r,fig.keep='none', tidy=FALSE, echo = TRUE}
 ggplot(data = mpg, aes(x = displ, y = hwy)) +
-  geom_point() + xlab("Displacement")
+  geom_point() +
+  labs(x = "Displacement")
 ```
 
 Now add a dashed loess line and change the $y$-axis label.
-Hint: try `stat_smooth` and `ylab(`New label')`.
+Hint: try `stat_smooth` and adding a $y$ label to the previous labs function.
 
 ```{r}
 g = ggplot(data = mpg, aes(x = displ, y = hwy))
 g1 = g + geom_point() + stat_smooth(linetype = 2) +
-  xlab("Displacement") + ylab("Highway mpg")
+  labs(x = "Displacement",
+       y = "Highway mpg")
 ```
 
 ```{r,dev='png', out.width='\\textwidth', echo=FALSE, message=FALSE, fig.margin = TRUE, fig.cap = "Graphics for section 1.", fig.height = 4}
