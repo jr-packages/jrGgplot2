@@ -1,7 +1,7 @@
 Type: Package
 Package: jrGgplot2
 Title: Advanced R graphics
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",
