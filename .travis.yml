@@ -16,6 +16,8 @@ notifications:
 before_install:
   - tlmgr install fancyvrb units
   - sudo apt-get install -y ghostscript
+  - sudo apt-get install -y libmagick++-dev
+
 
 before_script:
   - wget https://raw.githubusercontent.com/jr-packages/drat/master/test_deploy.sh
