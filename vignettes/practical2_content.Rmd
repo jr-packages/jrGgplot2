@@ -91,12 +91,11 @@ i1
 
 ## Copy cat
 
-
 ```{r,F1, echo=FALSE, message=FALSE, fig.keep='none',results='hide'}
 data(mpg, package = "ggplot2")
 g = ggplot(data = mpg, aes(x = displ, y = hwy))
 g1 = g + geom_point() + stat_smooth(linetype = 2) +
-  xlab("Displacement") + ylab("Highway mpg")
+  labs(x = "Displacement", y = "Highway mpg")
 g2 = g + geom_point() + stat_smooth(aes(colour = drv))
 ```
 
