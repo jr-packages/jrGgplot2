@@ -29,8 +29,8 @@ Suggests:
     formatR,
     knitr,
     lintr,
-    tufte,
-    magick
+    magick,
+    tufte
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
