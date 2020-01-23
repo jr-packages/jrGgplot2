@@ -27,11 +27,11 @@ Imports:
 Suggests:
     DT,
     formatR,
+    gganimate,
     knitr,
     lintr,
     magick,
-    tufte,
-    gganimate
+    tufte
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
