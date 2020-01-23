@@ -30,7 +30,8 @@ Suggests:
     knitr,
     lintr,
     magick,
-    tufte
+    tufte,
+    gganimate
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
