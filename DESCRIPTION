@@ -1,7 +1,7 @@
 Type: Package
 Package: jrGgplot2
 Title: Advanced R graphics
-Version: 0.1.8
+Version: 0.1.9
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",
@@ -28,6 +28,7 @@ Suggests:
     DT,
     formatR,
     gganimate,
+    ggforce,
     knitr,
     lintr,
     magick,
