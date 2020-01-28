@@ -27,6 +27,7 @@ Imports:
 Suggests:
     DT,
     formatR,
+    gapminder
     gganimate,
     ggforce,
     knitr,
