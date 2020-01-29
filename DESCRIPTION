@@ -1,7 +1,7 @@
 Type: Package
 Package: jrGgplot2
 Title: Advanced R graphics
-Version: 0.1.10
+Version: 0.1.11
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",
@@ -33,6 +33,7 @@ Suggests:
     knitr,
     lintr,
     magick,
+    patchwork,
     tufte
 VignetteBuilder: 
     knitr
