@@ -14,6 +14,9 @@ URL: https://www.jumpingrivers.com
 Depends:
     R (>= 3.3.0)
 Imports:
+    gapminder,
+    gganimate,
+    ggforce,
     ggplot2,
     ggplot2movies,
     ggrepel,
@@ -22,18 +25,15 @@ Imports:
     gridExtra,
     hexbin,
     hrbrthemes,
+    patchwork
     plotly,
     quantreg
 Suggests:
     DT,
     formatR,
-    gapminder,
-    gganimate,
-    ggforce,
     knitr,
     lintr,
     magick,
-    patchwork,
     tufte
 VignetteBuilder: 
     knitr
