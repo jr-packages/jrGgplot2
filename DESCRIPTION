@@ -25,6 +25,7 @@ Imports:
     gridExtra,
     hexbin,
     hrbrthemes,
+    patchwork
     plotly,
     quantreg
 Suggests:
@@ -36,7 +37,5 @@ Suggests:
     tufte
 VignetteBuilder: 
     knitr
-Remotes: 
-    thomasp85/patchwork
 Encoding: UTF-8
 RoxygenNote: 7.0.2
