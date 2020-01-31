@@ -25,9 +25,9 @@ Imports:
     gridExtra,
     hexbin,
     hrbrthemes,
-    patchwork
     plotly,
     quantreg
+Remotes: thomasp85/patchwork
 Suggests:
     DT,
     formatR,
