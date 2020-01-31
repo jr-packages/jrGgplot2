@@ -27,7 +27,6 @@ Imports:
     hrbrthemes,
     plotly,
     quantreg
-Remotes: thomasp85/patchwork
 Suggests:
     DT,
     formatR,
@@ -37,5 +36,7 @@ Suggests:
     tufte
 VignetteBuilder: 
     knitr
+Remotes: 
+    thomasp85/patchwork
 Encoding: UTF-8
 RoxygenNote: 7.0.2
