@@ -1,7 +1,7 @@
 Type: Package
 Package: jrGgplot2
 Title: Advanced R graphics
-Version: 0.1.12
+Version: 0.1.13
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",
@@ -25,6 +25,7 @@ Imports:
     gridExtra,
     hexbin,
     hrbrthemes,
+    patchwork,
     plotly,
     quantreg
 Suggests:
@@ -36,7 +37,5 @@ Suggests:
     tufte
 VignetteBuilder: 
     knitr
-Remotes: 
-    thomasp85/patchwork
 Encoding: UTF-8
 RoxygenNote: 7.0.2
