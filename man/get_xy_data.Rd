@@ -4,7 +4,7 @@
 \alias{get_xy_data}
 \title{A function to generate a dummy x-y data set}
 \usage{
-get_xy_data()
+get_xy_data(n = 20000)
 }
 \arguments{
 \item{n}{number of points in the random scatter (default is 20000)}

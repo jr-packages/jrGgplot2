@@ -8,7 +8,6 @@
 #' @importFrom ggplot2 geom_point
 #' @importFrom dplyr mutate %>%
 #' @importFrom png readPNG
-#' @usage get_xy_data()
 #' @return tibble
 #' @export
 get_xy_data = function(n = 20000) {
@@ -51,3 +50,4 @@ get_xy_data = function(n = 20000) {
   xydata = as.tibble(xydata)
   xydata
 }
+utils::globalVariables(c("x", "y"))
