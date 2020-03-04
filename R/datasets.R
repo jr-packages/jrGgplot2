@@ -107,20 +107,3 @@ NULL
 #' @source http://www.knownman.com/james-bond-graph/
 #' @docType data
 NULL
-
-#' A dummy x-y data set
-#'
-#' This is a 25000 by 2 data set consisting of
-#' an x and y column.
-#'
-#'
-#' \describe{
-#' \item{x}{Random set of values}
-#' \item{y}{Random set of values}
-#' }
-#' @name xydata
-#' @usage data(xydata)
-#' @return Dataframe
-#' @keywords datasets
-#' @docType data
-NULL

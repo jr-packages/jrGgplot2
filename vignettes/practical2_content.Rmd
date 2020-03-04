@@ -52,60 +52,20 @@ do?
 - What does `stat_bin2d()` and `stat_binhex()` do - add it to the
   plot to find out! Try varying the parameters `bins` and `binwidth`.
 
-Now, let's try to make the Jumping Rivers logo appear from within the large array of scattered points\sidenote{Magic and mysterious, I know}. Load in the data and experiment with the size and alpha aesthetics to display the image. The source code to load the data and produce the ggplot object are given below.
+Now, let's see what happens when we load in the `xydata` data set and experiment with the size and alpha aesthetics. The source code to load the data and produce the ggplot object are given below - prepare to be amazed!
 
-```{R, echo=TRUE, eval=FALSE}
-data("xydata", package = "jrGgplot2")
+```{r}
+xydata = get_xy_data() 
 ```
 
-```{r, echo=FALSE, warning=FALSE}
-library("png")
-library("ggplot2")
-library("tibble")
-library("dplyr")
-logo = readPNG("../inst/logo.png")
-dims = dim(logo)
-pts = matrix(c(rep(1:dims[1], dims[2]), rep(1:dims[2], each = dims[1])), byrow = FALSE, ncol = 2)
-
-#pick out only the points that are grey (on outline)
-pts = pts[sapply(1:(dims[1] * dims[2]),
-                 function(x) {
-                   logo[pts[x, 1], pts[x, 2], 4] > 0.5 &
-                   logo[pts[x, 1], pts[x, 2], 4] < 0.8
-                 }
-                 ), ]
-
-#nolint start
-samp = sample(x = 1:nrow(pts), size = 5000, replace = TRUE)
-#nolint end
-
-ptsflipped = cbind(x = pts[samp, 2], y = dims[2] - pts[samp, 1])
-
-#convert from matrix to tibble
-ptsflipped = as.tibble(ptsflipped)
-
-#centre image
-ptsflipped = ptsflipped %>% 
-  mutate(x  = x + 300, y = y + 300)
-
-# now add a random scatter of points
-xynorm = round(cbind(x = rnorm(n = 20000, mean = 1000, sd = 700),
-                     y = rnorm(n = 20000, mean = 1400, sd = 700)))
-
-xydata = rbind(xynorm, ptsflipped)
-n = nrow(xydata)
-
-#reorder rows to hide the data
-samp2 = sample(x = 1:n, size = n, replace = FALSE)
-xydata = xydata[samp2, ]
-
-xydata = as.tibble(xydata)
-```
+The default number of random scatter points is 20000. We can change this by altering the argument n within the `get_xy_data()` function. 
 
 ```{r, echo=TRUE, eval=FALSE}
-ggplot() +
-  geom_point(data = xydata, mapping = aes(x = x, y = y))
+ggplot(data = xydata, mapping = aes(x = x, y = y)) +
+  geom_point()
 ```
+
+Try replacing `geom_point()` with `geom_hex(bins = 150)`
 
 ## Displaying distributions
 
