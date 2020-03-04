@@ -115,10 +115,12 @@ NULL
 #'
 #'
 #' \describe{
-#' \item{x.}{Random set of values}
-#' \item{y.}{Random set of values}}
+#' \item{x}{Random set of values}
+#' \item{y}{Random set of values}
+#' }
 #' @name xydata
 #' @usage data(xydata)
 #' @return Dataframe
 #' @keywords datasets
+#' @docType data
 NULL
