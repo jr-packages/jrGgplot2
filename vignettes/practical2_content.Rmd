@@ -52,6 +52,21 @@ do?
 - What does `stat_bin2d()` and `stat_binhex()` do - add it to the
   plot to find out! Try varying the parameters `bins` and `binwidth`.
 
+Now, let's see what happens when we load in the `xydata` data set and experiment with the size and alpha aesthetics. The source code to load the data and produce the ggplot object are given below - prepare to be amazed!
+
+```{r}
+xydata = get_xy_data() 
+```
+
+The default number of random scatter points is 20000. We can change this by altering the argument n within the `get_xy_data()` function. 
+
+```{r, echo=TRUE, eval=FALSE}
+ggplot(data = xydata, mapping = aes(x = x, y = y)) +
+  geom_point()
+```
+
+Try replacing `geom_point()` with `geom_hex(bins = 150)`
+
 ## Displaying distributions
 
 The diamonds data set contains the prices and other attributes of almost 54,000 diamonds. It is a data frame with $53,940$ rows and $10$ variables. First, load the diamonds data set:
