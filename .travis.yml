@@ -17,8 +17,7 @@ before_install:
   - tlmgr install fancyvrb units
   - sudo apt-get install -y ghostscript
   - sudo apt-get install -y libmagick++-dev
-  - sudo apt-get install -y libavfilter-dev
-
+  - sudo apt-get install -y cargo
 
 before_script:
   - wget https://raw.githubusercontent.com/jr-packages/drat/master/test_deploy.sh
