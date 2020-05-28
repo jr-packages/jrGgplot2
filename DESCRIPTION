@@ -1,7 +1,7 @@
 Type: Package
 Package: jrGgplot2
 Title: Advanced R graphics
-Version: 0.1.17
+Version: 0.1.18
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",
@@ -14,6 +14,7 @@ URL: https://www.jumpingrivers.com
 Depends:
     R (>= 3.3.0)
 Imports:
+    av,
     dplyr,
     gapminder,
     gganimate,
@@ -23,7 +24,6 @@ Imports:
     ggrepel,
     ggridges,
     ggthemes,
-    gifski,
     gridExtra,
     hexbin,
     hrbrthemes,
