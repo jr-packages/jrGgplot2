@@ -1,4 +1,6 @@
+#nolint start
 ## ---- echo=FALSE, message=TRUE, label="F2-11", fig.margin = TRUE, fig.cap="Average number of units consumed per actor.", fig.width=4, fig.height=4, message = FALSE----
+#nolint end
 library("ggplot2")
 data(bond, package = "jrGgplot2")
 ggplot(bond, aes(Actor, Alcohol_Units)) +
@@ -8,15 +10,16 @@ ggplot(bond, aes(Actor, Alcohol_Units)) +
 library("ggplot2")
 data(bond, package = "jrGgplot2")
 ggplot(bond, aes(Actor, Alcohol_Units)) +
-  stat_summary(geom = "point", 
+  stat_summary(geom = "point",
                fun.y = mean)
 
 ## ---- tidy=FALSE, fig.keep="none", echo = TRUE--------------------------------
 ggplot(bond, aes(Actor, Alcohol_Units)) +
     stat_summary(geom = "point",
                  fun.y =  function(i) max(i) - min(i))
-
+#nolint start
 ## ---- echo=FALSE, message=TRUE, label="F2-12", fig.margin = TRUE, fig.cap="Plot of the range for each actor.", fig.width=4, fig.height=4----
+#nolint end
 ggplot(bond, aes(Actor, Alcohol_Units)) +
              stat_summary(geom = "point", fun.y = mean)
 
@@ -32,11 +35,12 @@ ggplot(bond, aes(x = Actor, y = Alcohol_Units)) +
                  width = 0.2, lwd = 2) +
     ylim(c(0, 20))
 
+#nolint start
 ## ---- echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, label="F2-13", fig.margin = TRUE, fig.cap="Confidence intervals for the mean number of units consumed by each actor.", fig.width=4, fig.height=4----
+#nolint end
 ggplot(bond, aes(x = Actor, y = Alcohol_Units)) +
     stat_summary(fun.ymin = function(i) mean(i) - std_err(i),
                  fun.ymax = function(i) mean(i) + std_err(i),
                  colour = "steelblue", geom = "errorbar",
                  width = 0.2, lwd = 2) +
     ylim(c(0, 20))
-
