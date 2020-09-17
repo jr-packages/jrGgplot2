@@ -1,7 +1,7 @@
 Type: Package
 Package: jrGgplot2
-Title: Advanced R graphics
-Version: 0.1.18
+Title: Jumping Rivers: Advanced Graphics in R
+Version: 0.1.19
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",
